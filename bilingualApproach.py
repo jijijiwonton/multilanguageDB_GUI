@@ -2,11 +2,12 @@
 from tkinter import *
 from tkinter import messagebox
 from tkinter.ttk import *
+import datetime
 import mysql.connector
 
 '''Define global variables'''
-purePink ="#fce4ec"
-lightPink = "#fce4ec"
+purePink ="#f7bacf"
+lightPink = "#ffedff"
 catchyPink = "#f06292"
 vintagePink = "#c38a9e"
 window = Tk()
@@ -17,7 +18,6 @@ window.geometry("700x700")
 window.config(padx=40, pady=50, bg=lightPink)
 
 frame = Frame(window, width=500, borderwidth=10)
-
 frame.grid(row=9, column=0, columnspan=8, pady=(2, 0))
 
 '''Style Object'''
@@ -202,6 +202,8 @@ def delete():
         con.commit()
         messagebox.showinfo(title="DELETE Operation ❌",
                             message="All data is deleted successfully ❌")
+        
+        id_input.delete(0, END)
     else:
         messagebox.showerror(title="DELETE ERROR ❌",
                              message="Data was not found or Invalid ID ❌")
