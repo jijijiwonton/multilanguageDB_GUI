@@ -4,13 +4,14 @@ from tkinter import messagebox
 from tkinter.ttk import *
 import mysql.connector
 
+'''Define global variables'''
 purePink ="#fce4ec"
 lightPink = "#fce4ec"
 catchyPink = "#f06292"
 vintagePink = "#c38a9e"
 window = Tk()
 
-# TkInter Configuration
+'''TkInter Configuration'''
 window.title("Multilanguage Database - Bilingual Approach fields")
 window.geometry("700x700")
 window.config(padx=40, pady=50, bg=lightPink)
@@ -19,7 +20,7 @@ frame = Frame(window, width=500, borderwidth=10)
 
 frame.grid(row=9, column=0, columnspan=8, pady=(2, 0))
 
-# Style Object
+'''Style Object'''
 style = Style()
 
 style.configure('W.TButton', font=('calibri', 10, 'bold'),
@@ -27,12 +28,12 @@ style.configure('W.TButton', font=('calibri', 10, 'bold'),
 style.configure('W.Label', font=("calibri", 12, 'bold'),
                 color=catchyPink)
 
-# Clear frame to avoid overwrite data display
+'''Clear frame to avoid overwrite data display'''
 def clear_frame():
     for widgets in frame.winfo_children():
         widgets.destroy()
 
-# Connection validation to DB
+'''Connection validation to DB'''
 try:
     con = mysql.connector.connect(
         host='localhost', user='root', password='root', database='multi')
@@ -44,7 +45,9 @@ else:
 
 cursor = con.cursor()
 
-# Database Operations
+'''Database Operations'''
+
+'''Create a table for bilingual fields approach'''
 def createTable():
     bilingual = "CREATE TABLE IF NOT EXISTS bilingualFields (id int(10) NOT NULL AUTO_INCREMENT, name_en varchar(50) NOT NULL, name_ko varchar(50) NOT NULL, calories int NOT NULL, benefit_en varchar(255) NOT NULL, benefit_ko varchar(255) NOT NULL, season_en varchar(10) NOT NULL, season_ko varchar(10) NOT NULL, PRIMARY KEY (`id`));"
     # TODO: The table creation should be in the same GUI or create another GUI?
@@ -54,6 +57,7 @@ def createTable():
     # cursor.execute(multilingual)
     messagebox.showinfo(title="CREATE Operation 💗", message="A few bilingual fields table is created 💗")
     
+'''Display data in English'''
 def displayInEnglish():
     clear_frame()
     i = 6
@@ -101,7 +105,8 @@ def displayInEnglish():
             i += 1
     else:
         messagebox.showerror(title="READ ERROR! ⚒️", message="No data found! ⚒️")
-        
+   
+'''Display data in Korean'''     
 def displayInKorean():
     clear_frame()
     i = 6
@@ -152,6 +157,7 @@ def displayInKorean():
     else:
         messagebox.showerror(title="READ ERROR! ⚒️", message="No data found! ⚒️")
 
+'''Insert a record'''
 def insert():
     name_en = name_en_input.get()
     name_ko = name_ko_input.get()
@@ -185,6 +191,7 @@ def insert():
     except Exception:
             messagebox.showerror(title="INSERT ERROR! ⚒️", message="An error has occurred! ⚒️")
 
+'''Delete a specific data using ID'''
 def delete():
     id = id_input.get()
     cursor.execute(f"DELETE FROM bilingualFields WHERE ID='{id}';")
@@ -199,6 +206,7 @@ def delete():
         messagebox.showerror(title="DELETE ERROR ❌",
                              message="Data was not found or Invalid ID ❌")
 
+'''Update a specific data using ID'''
 def update():
     id = id_input.get()
     name_en = name_en_input.get()
@@ -229,9 +237,9 @@ def update():
         messagebox.showerror(title="UPDATE ERROR! ❌",
                                  message="Invalid ROLL number! ❌")
 
-# Graphical User Interface
+'''Graphical User Interface'''
 
-# Button field
+'''Button UI'''
 create_table_btn = Button(text="CREATE A TABLE", command= createTable, style="W.TButton")
 create_table_btn.grid(row=0, column=0,   padx=5)
 
@@ -246,14 +254,14 @@ update_button = Button(text="UPDATE", command=update,
                        width=10, style="W.TButton")
 update_button.grid(row=0, column=3,   padx=5)
 
-# Bilingual field
+'''Bilingual field'''
 switchToEnglishBtn = Button(text="English", command= displayInEnglish, style="W.TButton")
 switchToEnglishBtn.grid(row=1, column=0, pady=(10, 0))
 
 switchToKoreanBtn = Button(text="Korean", command= displayInKorean, style="W.TButton")
 switchToKoreanBtn.grid(row=1, column=1,  pady=(10, 0))
 
-# # Label and Input field
+'''Label and Input field'''
 name_en = Label(text="Name_en", style="W.Label")
 name_en.grid(row=2, column=0,  pady=(10, 0))
 
@@ -301,5 +309,6 @@ id.grid(row=2, column=2, pady=(10, 0))
 
 id_input = Entry()
 id_input.grid(row=2, column=3, pady=(10, 0))
-# Run the program
+
+'''Run the program'''
 window.mainloop()
