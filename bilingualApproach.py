@@ -17,7 +17,7 @@ window.config(padx=40, pady=50, bg=lightPink)
 
 frame = Frame(window, width=500, borderwidth=10)
 
-frame.grid(row=9, column=0, columnspan=8, pady=(10, 0))
+frame.grid(row=9, column=0, columnspan=8, pady=(2, 0))
 
 # Style Object
 style = Style()
@@ -170,6 +170,15 @@ def insert():
             messagebox.showinfo(title="INSERT Operation 💗",
                                         message="Data has been inserted successfully! 💗")
 
+            # After click 'insert' button, it clears the input field to be empty for a user convenience
+            name_en_input.delete(0, END)
+            name_ko_input.delete(0, END)
+            benefit_en_input.delete(0, END)
+            benefit_ko_input.delete(0, END)
+            calories_input.delete(0, END)
+            season_en_input.delete(0, END)
+            season_ko_input.delete(0, END)
+            
         else:
             messagebox.showerror(title="INSERT ERROR! ⚒️", message="An error has occurred! ⚒️")
             
