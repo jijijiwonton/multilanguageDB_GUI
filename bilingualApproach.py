@@ -186,7 +186,8 @@ def insert():
             messagebox.showerror(title="INSERT ERROR! ⚒️", message="An error has occurred! ⚒️")
 
 def delete():
-    cursor.execute(f"DELETE FROM bilingualFields;")
+    id = id_input.get()
+    cursor.execute(f"DELETE FROM bilingualFields WHERE ID='{id}';")
     affected_rows = cursor.rowcount
     print(f"Rows affected: {affected_rows}")
 
@@ -196,7 +197,7 @@ def delete():
                             message="All data is deleted successfully ❌")
     else:
         messagebox.showerror(title="DELETE ERROR ❌",
-                             message="Data was not found ❌")
+                             message="Data was not found or Invalid ID ❌")
         
 # TODO: Implementation needed
 def update():
@@ -225,7 +226,6 @@ switchToEnglishBtn.grid(row=1, column=0, pady=(10, 0))
 
 switchToKoreanBtn = Button(text="Korean", command= displayInKorean, style="W.TButton")
 switchToKoreanBtn.grid(row=1, column=1,  pady=(10, 0))
-
 
 # # Label and Input field
 name_en = Label(text="Name_en", style="W.Label")
@@ -270,7 +270,10 @@ season_ko.grid(row=8, column=0, pady=(10, 0))
 season_ko_input = Entry()
 season_ko_input.grid(row=8, column=1, pady=(10, 0))
 
+id = Label(text="ID", style="W.Label")
+id.grid(row=2, column=2, pady=(10, 0))
 
-
+id_input = Entry()
+id_input.grid(row=2, column=3, pady=(10, 0))
 # Run the program
 window.mainloop()
