@@ -198,10 +198,36 @@ def delete():
     else:
         messagebox.showerror(title="DELETE ERROR ❌",
                              message="Data was not found or Invalid ID ❌")
-        
-# TODO: Implementation needed
+
 def update():
-    pass
+    id = id_input.get()
+    name_en = name_en_input.get()
+    name_ko = name_ko_input.get()
+    benefit_en = benefit_en_input.get()
+    benefit_ko = benefit_ko_input.get()
+    calories = calories_input.get()
+    season_en = season_en_input.get()
+    season_ko = season_ko_input.get()
+    
+    cursor.execute(f"UPDATE bilingualFields SET name_en='{name_en}', name_ko='{name_ko}', calories ='{calories}', benefit_en ='{benefit_en}', benefit_ko ='{benefit_ko}', season_en ='{season_en}', season_ko ='{season_ko}' WHERE ID='{id}';")
+    affected_rows = cursor.rowcount
+    print(f"Rows affected: {affected_rows}")
+    
+    if affected_rows != 0:
+        con.commit()
+        messagebox.showinfo(title="UPDATE Operation 💗", message="Data has been updated successfully! 💗")
+        
+        id = id_input.delete(0, END)
+        name_en_input.delete(0, END)
+        name_ko_input.delete(0, END)
+        benefit_en_input.delete(0, END)
+        benefit_ko_input.delete(0, END)
+        calories_input.delete(0, END)
+        season_en_input.delete(0, END)
+        season_ko_input.delete(0, END)
+    else:
+        messagebox.showerror(title="UPDATE ERROR! ❌",
+                                 message="Invalid ROLL number! ❌")
 
 # Graphical User Interface
 
