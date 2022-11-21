@@ -12,12 +12,12 @@ window = Tk()
 
 # TkInter Configuration
 window.title("Multilanguage Database - Bilingual Approach fields")
-window.geometry("700x400")
+window.geometry("700x700")
 window.config(padx=40, pady=50, bg=lightPink)
 
 frame = Frame(window, width=500, borderwidth=10)
 
-frame.grid(row=6, column=0, columnspan=8, pady=(10, 0))
+frame.grid(row=9, column=0, columnspan=8, pady=(10, 0))
 
 # Style Object
 style = Style()
@@ -46,7 +46,7 @@ cursor = con.cursor()
 
 # Database Operations
 def createTable():
-    bilingual = "CREATE TABLE IF NOT EXISTS bilingualFields (id int(10) NOT NULL AUTO_INCREMENT, title_en varchar(255) NOT NULL, title_ko varchar(255) NOT NULL, benefit_en varchar(255) NOT NULL, benefit_ko varchar(255) NOT NULL, PRIMARY KEY (`id`));"
+    bilingual = "CREATE TABLE IF NOT EXISTS bilingualFields (id int(10) NOT NULL AUTO_INCREMENT, name_en varchar(50) NOT NULL, name_ko varchar(50) NOT NULL, calories int NOT NULL, benefit_en varchar(255) NOT NULL, benefit_ko varchar(255) NOT NULL, season_en varchar(10) NOT NULL, season_ko varchar(10) NOT NULL, PRIMARY KEY (`id`));"
     # TODO: The table creation should be in the same GUI or create another GUI?
     # multilingual = "CREATE TABLE IF NOT EXISTS multiLanguagesFields (id int(10) NOT NULL AUTO_INCREMENT, title_en varchar(255) NOT NULL, title_ko varchar(255) NOT NULL, title_ch varchar(255) NOT NULL, title_fr varchar(255) NOT NULL, title_sp varchar(255) NOT NULL, benefit_en varchar(255) NOT NULL, benefit_ko varchar(255) NOT NULL, benefit_ch varchar(255) NOT NULL, benefit_fr varchar(255) NOT NULL, benefit_sp varchar(255) NOT NULL, PRIMARY KEY (`id`));"
     cursor.execute(bilingual)
@@ -57,30 +57,40 @@ def createTable():
 def displayInEnglish():
     clear_frame()
     i = 6
-    cursor.execute(f"SELECT title_en, benefit_en FROM bilingualFields")
+    cursor.execute(f"SELECT name_en, calories, benefit_en, season_en FROM bilingualFields")
     rows = cursor.fetchall()
     print(rows)
     
     if len(rows) != 0:
-        title_en = Label(frame, text="Title(EN)",
+        name_en = Label(frame, text="Name(EN)",
                               style="W.Label", width=10, background= vintagePink)
-        benefit_en = Label(frame, text="Benefit(EN)",
+        calories = Label(frame, text="Calories",
+                               style="W.Label", width=10, background= vintagePink)
+        benefit_en = Label(frame, text="Benefit(EN)s", style="W.Label", width=10, background= vintagePink)
+        season_en = Label(frame, text="Season(EN)",
                                style="W.Label", width=10, background= vintagePink)
 
-        title_en.grid(pady=5, column=0, row=5)
-        benefit_en.grid(pady=5, column=1, row=5)
+        name_en.grid(pady=5, column=0, row=5)
+        calories.grid(pady=5, column=1, row=5)
+        benefit_en.grid(pady=5, column=2, row=5)
+        season_en.grid(pady=5, column=3, row=5)
         
         for row in rows:
             '''Display item'''
             
-            display_title_en = Label(
+            display_name_en = Label(
                 frame, text=f"{row[0]}", style="W.Label", background=purePink)
-            display_benefit_En = Label(
+            display_benefit_en = Label(
                 frame, text=f"{row[1]}", style="W.Label", background=purePink)
+            display_calories = Label(
+                frame, text=f"{row[2]}", style="W.Label", background=purePink)
+            display_season_en = Label(
+                frame, text=f"{row[3]}", style="W.Label", background=purePink)
 
-
-            display_title_en.grid(pady=(2, 0), row=i, column=0)
-            display_benefit_En.grid(pady=(2, 0), row=i, column=1)
+            display_name_en.grid(pady=(2, 0), row=i, column=0)
+            display_benefit_en.grid(pady=(2, 0), row=i, column=1)
+            display_calories.grid(pady=(2, 0), row=i, column=2)
+            display_season_en.grid(pady=(2, 0), row=i, column=3)
 
             print(row)
             i += 1
@@ -90,29 +100,42 @@ def displayInEnglish():
 def displayInKorean():
     clear_frame()
     i = 6
-    cursor.execute(f"SELECT title_ko, benefit_ko FROM bilingualFields;")
+    cursor.execute(f"SELECT name_ko, calories, benefit_ko, season_ko FROM bilingualFields")
     rows = cursor.fetchall()
     print(rows)
     
     if len(rows) != 0:
 
-        title_ko = Label(frame, text="Title(KO)",
+        name_ko = Label(frame, text="Name(KO)",
+                               style="W.Label", width=10, background=vintagePink)
+        calories = Label(frame, text="Calories",
                                style="W.Label", width=10, background=vintagePink)
         benefit_ko = Label(frame, text="Benefit(KO)",
                                style="W.Label", width=10, background=vintagePink)
-        title_ko.grid(pady=5, column=1, row=5)
+        season_ko = Label(frame, text="Season(KO)",
+                               style="W.Label", width=10, background=vintagePink)
+        
+        name_ko.grid(pady=5, column=0, row=5)
+        calories.grid(pady=5, column=1, row=5)
         benefit_ko.grid(pady=5, column=2, row=5)
+        season_ko.grid(pady=5, column=3, row=5)
         
         for row in rows:
 
             '''Display item'''
-            display_label = Label(
+            display_name_ko = Label(
                 frame, text=f"{row[0]}", style="W.Label", background=purePink)
-            display_label4 = Label(
+            display_benefit_ko = Label(
                 frame, text=f"{row[1]}", style="W.Label", background=purePink)
+            display_calories = Label(
+                frame, text=f"{row[2]}", style="W.Label", background=purePink)
+            display_season_ko = Label(
+                frame, text=f"{row[3]}", style="W.Label", background=purePink)
 
-            display_label.grid(pady=(2, 0), row=i, column=1)
-            display_label4.grid(pady=(2, 0), row=i, column=2)
+            display_name_ko.grid(pady=(2, 0), row=i, column=0)
+            display_benefit_ko.grid(pady=(2, 0), row=i, column=1)
+            display_calories.grid(pady=(2, 0), row=i, column=2)
+            display_season_ko.grid(pady=(2, 0), row=i, column=3)
 
             print(row)
             i += 1
@@ -120,21 +143,23 @@ def displayInKorean():
         messagebox.showerror(title="READ ERROR! ⚒️", message="No data found! ⚒️")
 
 def insert():
-    title_en = title_en_input.get()
-    title_ko = title_ko_input.get()
+    name_en = name_en_input.get()
+    name_ko = name_ko_input.get()
     benefit_en = benefit_en_input.get()
     benefit_ko = benefit_ko_input.get()
+    calories = calories_input.get()
+    season_en = season_en_input.get()
+    season_ko = season_ko_input.get()
 
     try:
-        cursor.execute(f"INSERT INTO bilingualFields (title_en, title_ko, benefit_en, benefit_ko) VALUES('{title_en}', '{title_ko}', '{benefit_en}', '{benefit_ko}');")
+        cursor.execute(f"INSERT INTO bilingualFields (name_en, name_ko, calories, benefit_en, benefit_ko, season_en, season_ko) VALUES('{name_en}', '{name_ko}', {calories},'{benefit_en}', '{benefit_ko}', '{season_en}', '{season_ko}');")
         affected_rows = cursor.rowcount
         print(f"Rows affected: {affected_rows}")
         if affected_rows is not None:
             con.commit()
             messagebox.showinfo(title="INSERT Operation 💗",
                                         message="Data has been inserted successfully! 💗")
-            title_en_input.delete(0, END)
-            title_ko_input.delete(0, END)
+
         else:
             messagebox.showerror(title="INSERT ERROR! ⚒️", message="An error has occurred! ⚒️")
             
@@ -157,8 +182,6 @@ def delete():
 # TODO: Implementation needed
 def update():
     pass
-
-
 
 # Graphical User Interface
 
@@ -186,29 +209,49 @@ switchToKoreanBtn.grid(row=1, column=1,  pady=(10, 0))
 
 
 # # Label and Input field
-title_en = Label(text="Title_en", style="W.Label")
-title_en.grid(row=2, column=0,  pady=(10, 0))
+name_en = Label(text="Name_en", style="W.Label")
+name_en.grid(row=2, column=0,  pady=(10, 0))
 
-title_en_input = Entry()
-title_en_input.grid(row=2, column=1, pady=(10, 0))
+name_en_input = Entry()
+name_en_input.grid(row=2, column=1, pady=(10, 0))
 
-title_ko = Label(text="Title_ko", style="W.Label")
-title_ko.grid(row=3, column=0, pady=(10, 0))
+name_ko = Label(text="Name_ko", style="W.Label")
+name_ko.grid(row=3, column=0, pady=(10, 0))
 
-title_ko_input = Entry()
-title_ko_input.grid(row=3, column=1, pady=(10, 0))
+name_ko_input = Entry()
+name_ko_input.grid(row=3, column=1, pady=(10, 0))
+
+calories = Label(text="Calories", style="W.Label")
+calories.grid(row=4, column=0, pady=(10, 0))
+
+calories_input = Entry()
+calories_input.grid(row=4, column=1, pady=(10, 0)) 
 
 benefit_en = Label(text="Benefit_en", style="W.Label")
-benefit_en.grid(row=4, column=0,pady=(10, 0))
+benefit_en.grid(row=5, column=0,pady=(10, 0))
 
 benefit_en_input = Entry()
-benefit_en_input.grid(row=4, column=1, pady=(10, 0))
+benefit_en_input.grid(row=5, column=1, pady=(10, 0))
 
 benefit_ko = Label(text="Benefit_ko", style="W.Label")
-benefit_ko.grid(row=5, column=0, pady=(10, 0))
+benefit_ko.grid(row=6, column=0, pady=(10, 0))
 
 benefit_ko_input = Entry()
-benefit_ko_input.grid(row=5, column=1, pady=(10, 0))
+benefit_ko_input.grid(row=6, column=1, pady=(10, 0))
+
+season_en = Label(text="Season_en", style="W.Label")
+season_en.grid(row=7, column=0, pady=(10, 0))
+
+season_en_input = Entry()
+season_en_input.grid(row=7, column=1, pady=(10, 0))
+
+season_ko = Label(text="Season_ko", style="W.Label")
+season_ko.grid(row=8, column=0, pady=(10, 0))
+
+season_ko_input = Entry()
+season_ko_input.grid(row=8, column=1, pady=(10, 0))
+
+
 
 # Run the program
 window.mainloop()
