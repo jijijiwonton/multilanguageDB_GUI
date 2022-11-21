@@ -57,11 +57,13 @@ def createTable():
 def displayInEnglish():
     clear_frame()
     i = 6
-    cursor.execute(f"SELECT name_en, calories, benefit_en, season_en FROM bilingualFields")
+    cursor.execute(f"SELECT id, name_en, calories, benefit_en, season_en FROM bilingualFields")
     rows = cursor.fetchall()
     print(rows)
     
     if len(rows) != 0:
+        id = Label(frame, text="ID",
+                              style="W.Label", width=10, background= vintagePink)
         name_en = Label(frame, text="Name(EN)",
                               style="W.Label", width=10, background= vintagePink)
         calories = Label(frame, text="Calories",
@@ -70,27 +72,30 @@ def displayInEnglish():
         season_en = Label(frame, text="Season(EN)",
                                style="W.Label", width=10, background= vintagePink)
 
-        name_en.grid(pady=5, column=0, row=5)
-        calories.grid(pady=5, column=1, row=5)
-        benefit_en.grid(pady=5, column=2, row=5)
-        season_en.grid(pady=5, column=3, row=5)
+        id.grid(pady=5, column=0, row=5)
+        name_en.grid(pady=5, column=1, row=5)
+        calories.grid(pady=5, column=2, row=5)
+        benefit_en.grid(pady=5, column=3, row=5)
+        season_en.grid(pady=5, column=4, row=5)
         
         for row in rows:
             '''Display item'''
-            
-            display_name_en = Label(
+            display_id = Label(
                 frame, text=f"{row[0]}", style="W.Label", background=purePink)
-            display_benefit_en = Label(
+            display_name_en = Label(
                 frame, text=f"{row[1]}", style="W.Label", background=purePink)
-            display_calories = Label(
+            display_benefit_en = Label(
                 frame, text=f"{row[2]}", style="W.Label", background=purePink)
-            display_season_en = Label(
+            display_calories = Label(
                 frame, text=f"{row[3]}", style="W.Label", background=purePink)
+            display_season_en = Label(
+                frame, text=f"{row[4]}", style="W.Label", background=purePink)
 
-            display_name_en.grid(pady=(2, 0), row=i, column=0)
-            display_benefit_en.grid(pady=(2, 0), row=i, column=1)
-            display_calories.grid(pady=(2, 0), row=i, column=2)
-            display_season_en.grid(pady=(2, 0), row=i, column=3)
+            display_id.grid(pady=(2, 0), row=i, column=0)
+            display_name_en.grid(pady=(2, 0), row=i, column=1)
+            display_benefit_en.grid(pady=(2, 0), row=i, column=2)
+            display_calories.grid(pady=(2, 0), row=i, column=3)
+            display_season_en.grid(pady=(2, 0), row=i, column=4)
 
             print(row)
             i += 1
@@ -100,12 +105,13 @@ def displayInEnglish():
 def displayInKorean():
     clear_frame()
     i = 6
-    cursor.execute(f"SELECT name_ko, calories, benefit_ko, season_ko FROM bilingualFields")
+    cursor.execute(f"SELECT id, name_ko, calories, benefit_ko, season_ko FROM bilingualFields")
     rows = cursor.fetchall()
     print(rows)
     
     if len(rows) != 0:
-
+        id = Label(frame, text="ID",
+                              style="W.Label", width=10, background= vintagePink)
         name_ko = Label(frame, text="Name(KO)",
                                style="W.Label", width=10, background=vintagePink)
         calories = Label(frame, text="Calories",
@@ -115,27 +121,31 @@ def displayInKorean():
         season_ko = Label(frame, text="Season(KO)",
                                style="W.Label", width=10, background=vintagePink)
         
-        name_ko.grid(pady=5, column=0, row=5)
-        calories.grid(pady=5, column=1, row=5)
-        benefit_ko.grid(pady=5, column=2, row=5)
-        season_ko.grid(pady=5, column=3, row=5)
+        id.grid(pady=5, column=0, row=5)
+        name_ko.grid(pady=5, column=1, row=5)
+        calories.grid(pady=5, column=2, row=5)
+        benefit_ko.grid(pady=5, column=3, row=5)
+        season_ko.grid(pady=5, column=4, row=5)
         
         for row in rows:
 
             '''Display item'''
-            display_name_ko = Label(
+            display_id = Label(
                 frame, text=f"{row[0]}", style="W.Label", background=purePink)
-            display_benefit_ko = Label(
+            display_name_ko = Label(
                 frame, text=f"{row[1]}", style="W.Label", background=purePink)
-            display_calories = Label(
+            display_benefit_ko = Label(
                 frame, text=f"{row[2]}", style="W.Label", background=purePink)
-            display_season_ko = Label(
+            display_calories = Label(
                 frame, text=f"{row[3]}", style="W.Label", background=purePink)
+            display_season_ko = Label(
+                frame, text=f"{row[4]}", style="W.Label", background=purePink)
 
-            display_name_ko.grid(pady=(2, 0), row=i, column=0)
-            display_benefit_ko.grid(pady=(2, 0), row=i, column=1)
-            display_calories.grid(pady=(2, 0), row=i, column=2)
-            display_season_ko.grid(pady=(2, 0), row=i, column=3)
+            display_id.grid(pady=(2, 0), row=i, column=0)
+            display_name_ko.grid(pady=(2, 0), row=i, column=1)
+            display_benefit_ko.grid(pady=(2, 0), row=i, column=2)
+            display_calories.grid(pady=(2, 0), row=i, column=3)
+            display_season_ko.grid(pady=(2, 0), row=i, column=4)
 
             print(row)
             i += 1
