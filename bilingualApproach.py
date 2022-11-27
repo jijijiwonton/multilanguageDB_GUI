@@ -18,7 +18,7 @@ window.geometry("700x700")
 window.config(padx=40, pady=50, bg=lightPink)
 
 frame = Frame(window, width=500, borderwidth=10)
-frame.grid(row=9, column=0, columnspan=8, pady=(2, 0))
+frame.grid(row=11, column=0, columnspan=8, pady=(2, 0))
 
 '''Style Object'''
 style = Style()
@@ -117,13 +117,13 @@ def displayInKorean():
     if len(rows) != 0:
         id = Label(frame, text="ID",
                               style="W.Label", width=10, background= vintagePink)
-        name_ko = Label(frame, text="Name(KO)",
+        name_ko = Label(frame, text="이름(KO)",
                                style="W.Label", width=10, background=vintagePink)
-        calories = Label(frame, text="Calories",
+        calories = Label(frame, text="칼로리",
                                style="W.Label", width=10, background=vintagePink)
-        benefit_ko = Label(frame, text="Benefit(KO)",
+        benefit_ko = Label(frame, text="효능(KO)",
                                style="W.Label", width=10, background=vintagePink)
-        season_ko = Label(frame, text="Season(KO)",
+        season_ko = Label(frame, text="계절(KO)",
                                style="W.Label", width=10, background=vintagePink)
         
         id.grid(pady=5, column=0, row=5)
@@ -242,75 +242,78 @@ def update():
 '''Graphical User Interface'''
 
 '''Button UI'''
+name_en = Label(text="Bilingual - Column approach", style="W.Label")
+name_en.grid(row=0, column=0,  pady=(10, 10))
+
 create_table_btn = Button(text="CREATE A TABLE", command= createTable, style="W.TButton")
-create_table_btn.grid(row=0, column=0,   padx=5)
+create_table_btn.grid(row=1, column=0,   padx=5)
 
 add_btn = Button(text="INSERT", command=insert, style="W.TButton")
-add_btn.grid(row=0, column=1,   padx=5)
+add_btn.grid(row=1, column=1,   padx=5)
 
 delete_button = Button(text="DELETE", command=delete,
                        width=10, style="W.TButton")
-delete_button.grid(row=0, column=2,   padx=5)
+delete_button.grid(row=1, column=2,   padx=5)
 
 update_button = Button(text="UPDATE", command=update,
                        width=10, style="W.TButton")
-update_button.grid(row=0, column=3,   padx=5)
+update_button.grid(row=1, column=3,   padx=5)
 
 '''Bilingual field'''
 switchToEnglishBtn = Button(text="English", command= displayInEnglish, style="W.TButton")
-switchToEnglishBtn.grid(row=1, column=0, pady=(10, 0))
+switchToEnglishBtn.grid(row=2, column=0, pady=(10, 0))
 
 switchToKoreanBtn = Button(text="Korean", command= displayInKorean, style="W.TButton")
-switchToKoreanBtn.grid(row=1, column=1,  pady=(10, 0))
+switchToKoreanBtn.grid(row=2, column=1,  pady=(10, 0))
 
 '''Label and Input field'''
 name_en = Label(text="Name_en", style="W.Label")
-name_en.grid(row=2, column=0,  pady=(10, 0))
+name_en.grid(row=3, column=0,  pady=(10, 0))
 
 name_en_input = Entry()
-name_en_input.grid(row=2, column=1, pady=(10, 0))
+name_en_input.grid(row=3, column=1, pady=(10, 0))
 
 name_ko = Label(text="Name_ko", style="W.Label")
-name_ko.grid(row=3, column=0, pady=(10, 0))
+name_ko.grid(row=4, column=0, pady=(10, 0))
 
 name_ko_input = Entry()
-name_ko_input.grid(row=3, column=1, pady=(10, 0))
+name_ko_input.grid(row=4, column=1, pady=(10, 0))
 
 calories = Label(text="Calories", style="W.Label")
-calories.grid(row=4, column=0, pady=(10, 0))
+calories.grid(row=5, column=0, pady=(10, 0))
 
 calories_input = Entry()
-calories_input.grid(row=4, column=1, pady=(10, 0)) 
+calories_input.grid(row=5, column=1, pady=(10, 0)) 
 
 benefit_en = Label(text="Benefit_en", style="W.Label")
-benefit_en.grid(row=5, column=0,pady=(10, 0))
+benefit_en.grid(row=6, column=0,pady=(10, 0))
 
 benefit_en_input = Entry()
-benefit_en_input.grid(row=5, column=1, pady=(10, 0))
+benefit_en_input.grid(row=6, column=1, pady=(10, 0))
 
 benefit_ko = Label(text="Benefit_ko", style="W.Label")
-benefit_ko.grid(row=6, column=0, pady=(10, 0))
+benefit_ko.grid(row=7, column=0, pady=(10, 0))
 
 benefit_ko_input = Entry()
-benefit_ko_input.grid(row=6, column=1, pady=(10, 0))
+benefit_ko_input.grid(row=7, column=1, pady=(10, 0))
 
 season_en = Label(text="Season_en", style="W.Label")
-season_en.grid(row=7, column=0, pady=(10, 0))
+season_en.grid(row=8, column=0, pady=(10, 0))
 
 season_en_input = Entry()
-season_en_input.grid(row=7, column=1, pady=(10, 0))
+season_en_input.grid(row=8, column=1, pady=(10, 0))
 
 season_ko = Label(text="Season_ko", style="W.Label")
-season_ko.grid(row=8, column=0, pady=(10, 0))
+season_ko.grid(row=9, column=0, pady=(10, 0))
 
 season_ko_input = Entry()
-season_ko_input.grid(row=8, column=1, pady=(10, 0))
+season_ko_input.grid(row=9, column=1, pady=(10, 0))
 
 id = Label(text="ID", style="W.Label")
-id.grid(row=2, column=2, pady=(10, 0))
+id.grid(row=3, column=2, pady=(10, 0))
 
 id_input = Entry()
-id_input.grid(row=2, column=3, pady=(10, 0))
+id_input.grid(row=3, column=3, pady=(10, 0))
 
 '''Run the program'''
 window.mainloop()
