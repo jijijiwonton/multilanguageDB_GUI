@@ -147,5 +147,3 @@ SELECT product.id, product_name, product_benefit, product_season, calories
         INNER JOIN product_translation_entry ON title = translation_id
         INNER JOIN product_language ON language_code = code 
         WHERE product_language.code = 'ko';
-
--- Insert testing

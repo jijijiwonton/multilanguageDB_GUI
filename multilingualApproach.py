@@ -115,79 +115,18 @@ def display(idField, nameField, caloriesField, benefitField, seasonField):
     else:
         messagebox.showerror(title="READ ERROR! ⚒️", message="No data found! ⚒️")
 
-def insert():
-    item_name = item_name_input.get()
-    benefit = benefit_input.get()
-    season = season_input.get()
-    calories = calories_input.get()
-
-    try:
-        cursor.execute(f"INSERT INTO bilingualFields (name_en, name_ko, calories, benefit_en, benefit_ko, season_en, season_ko) VALUES('{item_name}', '{benefit}', {season},'{benefit}');")
-        affected_rows = cursor.rowcount
-        print(f"Rows affected: {affected_rows}")
-        if affected_rows is not None:
-            con.commit()
-            messagebox.showinfo(title="INSERT Operation 💗",
-                                        message="Data has been inserted successfully! 💗")
-
-            # After click 'insert' button, it clears the input field to be empty for a user convenience
-            item_name_input.delete(0, END)
-            benefit_input.delete(0, END)
-            season_input.delete(0, END)
-            calories_input.delete(0, END)
-
-    
-            
-        else:
-            messagebox.showerror(title="INSERT ERROR! ⚒️", message="An error has occurred! ⚒️")
-            
-    except Exception:
-            messagebox.showerror(title="INSERT ERROR! ⚒️", message="An error has occurred! ⚒️")
-     
-
 '''Graphical User Interface'''
-
-'''Button UI'''
 item_name = Label(text="Multilingual - Translation table approach", style="W.Label")
 item_name.grid(row=0, column=0,  pady=(10, 10))
 
-Insert = Button(text="INSERT", command= insert, style="W.TButton")
-Insert.grid(row=1, column=0, pady=(10, 0))
-
 switchToEnglishBtn = Button(text="English", command= displayInEnglish, style="W.TButton")
-switchToEnglishBtn.grid(row=1, column=1, pady=(10, 0))
+switchToEnglishBtn.grid(row=1, column=0, pady=(10, 0))
 
 switchToKoreanBtn = Button(text="Korean", command= displayInKorean, style="W.TButton")
-switchToKoreanBtn.grid(row=1, column=2,  pady=(10, 0))
+switchToKoreanBtn.grid(row=1, column=1,  pady=(10, 0))
 
 switchToFrenchBtn = Button(text="French", command= displayInFrench, style="W.TButton")
-switchToFrenchBtn.grid(row=1, column=3,  pady=(10, 0))
-
-'''Label and Input field'''
-item_name = Label(text="Item name", style="W.Label")
-item_name.grid(row=2, column=0,  pady=(10, 0))
-
-item_name_input = Entry()
-item_name_input.grid(row=3, column=0, pady=(10, 0))
-
-benefit = Label(text="Benefit", style="W.Label")
-benefit.grid(row=2, column=1, pady=(10, 0))
-
-benefit_input = Entry()
-benefit_input.grid(row=3, column=1, pady=(10, 0))
-
-season = Label(text="Season", style="W.Label")
-season.grid(row=2, column=2, pady=(10, 0))
-
-season_input = Entry()
-season_input.grid(row=3, column=2, pady=(10, 0))
-
-calories = Label(text="Calories", style="W.Label")
-calories.grid(row=2, column=3, pady=(10, 0))
-
-calories_input = Entry()
-calories_input.grid(row=3, column=3, pady=(10, 0)) 
-
+switchToFrenchBtn.grid(row=1, column=2,  pady=(10, 0))
 
 '''Run the program'''
 window.mainloop()
