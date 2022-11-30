@@ -68,12 +68,12 @@ def displayInEnglish():
     if len(rows) != 0:
         id = Label(frame, text="ID",
                               style="W.Label", width=10, background= vintagePink)
-        name_en = Label(frame, text="Name(EN)",
+        name_en = Label(frame, text="Name",
                               style="W.Label", width=10, background= vintagePink)
         calories = Label(frame, text="Calories",
                                style="W.Label", width=10, background= vintagePink)
-        benefit_en = Label(frame, text="Benefit(EN)s", style="W.Label", width=10, background= vintagePink)
-        season_en = Label(frame, text="Season(EN)",
+        benefit_en = Label(frame, text="Benefit", style="W.Label", width=10, background= vintagePink)
+        season_en = Label(frame, text="Season",
                                style="W.Label", width=10, background= vintagePink)
 
         id.grid(pady=5, column=0, row=5)
@@ -115,16 +115,16 @@ def displayInKorean():
     print(rows)
     
     if len(rows) != 0:
-        id = Label(frame, text="ID",
-                              style="W.Label", width=10, background= vintagePink)
-        name_ko = Label(frame, text="이름(KO)",
-                               style="W.Label", width=10, background=vintagePink)
-        calories = Label(frame, text="칼로리",
-                               style="W.Label", width=10, background=vintagePink)
-        benefit_ko = Label(frame, text="효능(KO)",
-                               style="W.Label", width=10, background=vintagePink)
-        season_ko = Label(frame, text="계절(KO)",
-                               style="W.Label", width=10, background=vintagePink)
+        id = Label(frame, text="아이디(ID)",
+                              style="W.Label", width=15, background= vintagePink)
+        name_ko = Label(frame, text="이름(Name)",
+                               style="W.Label", width=15, background=vintagePink)
+        calories = Label(frame, text="칼로리(Calories)",
+                               style="W.Label", width=15, background=vintagePink)
+        benefit_ko = Label(frame, text="효능(Benefit)",
+                               style="W.Label", width=15, background=vintagePink)
+        season_ko = Label(frame, text="계절(Season)",
+                               style="W.Label", width=15, background=vintagePink)
         
         id.grid(pady=5, column=0, row=5)
         name_ko.grid(pady=5, column=1, row=5)
