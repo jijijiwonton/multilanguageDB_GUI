@@ -51,44 +51,46 @@ def displayInEnglish():
     clear_frame()
     cursor.execute(f"SELECT fruit.id, fruit_name, fruit_benefit, fruit_season, calories FROM fruit INNER JOIN fruit_translation_entry ON title = translation_id INNER JOIN fruit_language ON language_code = code WHERE fruit_language.code = 'En';")        
 
-    display('(En)', 'Name', 'Calories', 'Benefit', 'Season')
+    display( 'ID', 'Name', 'Calories', 'Benefit', 'Season')
     
 def displayInKorean():
     clear_frame()
     cursor.execute(f"SELECT fruit.id, fruit_name, fruit_benefit, fruit_season, calories FROM fruit INNER JOIN fruit_translation_entry ON title = translation_id INNER JOIN fruit_language ON language_code = code WHERE fruit_language.code = 'Ko';")        
 
-    display('(Ko)', '이름', '칼로리', '효능', '제철')
+    display( '아이디(ID)','이름(Name)', '칼로리(Calories)', '효능(Benefit)', '제철(Season)')
 
 def displayInFrench():
     clear_frame()
     cursor.execute(f"SELECT fruit.id, fruit_name, fruit_benefit, fruit_season, calories FROM fruit INNER JOIN fruit_translation_entry ON title = translation_id INNER JOIN fruit_language ON language_code = code WHERE fruit_language.code = 'Fr';")
 
-    display('(Fr)', 'Nom', 'calories', 'bénéficier à', 'saison')
+    display('ID', 'Nom(Name)', 'calories', 'bénéficier à(Benefit)', 'saison(Season)')
 
 '''Display data in different languages'''
-def display(languageCode, nameField, caloriesField, benefitField, seasonField):
+def display(idField, nameField, caloriesField, benefitField, seasonField):
     i = 6
 
     rows = cursor.fetchall()
     print(rows)
     
     if len(rows) != 0:
-        id = Label(frame, text="ID",
-                              style="W.Label", width=10, background= vintagePink)
-        name_ko = Label(frame, text=f"{nameField} {languageCode}",
-                               style="W.Label", width=10, background=vintagePink)
-        calories = Label(frame, text=f"{caloriesField} {languageCode}",
-                               style="W.Label", width=10, background=vintagePink)
-        benefit_ko = Label(frame, text=f"{benefitField} {languageCode}",
-                               style="W.Label", width=10, background=vintagePink)
-        season_ko = Label(frame, text=f"{seasonField} {languageCode}",
-                               style="W.Label", width=10, background=vintagePink)
+        id = Label(frame, text=f"{idField}",
+                              style="W.Label", width=17, background= vintagePink)
+        name= Label(frame, text=f"{nameField}",
+                               style="W.Label", width=17, background=vintagePink)
+        benefit = Label(frame, text=f"{benefitField}",
+                               style="W.Label", width=17, background=vintagePink)
+        season = Label(frame, text=f"{seasonField}",
+                               style="W.Label", width=20, background=vintagePink)
+        calories = Label(frame, text=f"{caloriesField}",
+                               style="W.Label", width=20, background=vintagePink)
         
         id.grid(pady=5, column=0, row=5)
-        name_ko.grid(pady=5, column=1, row=5)
-        calories.grid(pady=5, column=2, row=5)
-        benefit_ko.grid(pady=5, column=3, row=5)
-        season_ko.grid(pady=5, column=4, row=5)
+        name.grid(pady=5, column=1, row=5)
+        benefit.grid(pady=5, column=2, row=5)
+        season.grid(pady=5, column=3, row=5)
+        calories.grid(pady=5, column=4, row=5)
+       
+
         
         for row in rows:
 
