@@ -14,10 +14,10 @@ window = Tk()
 
 '''TkInter Configuration'''
 window.title("Multilanguage Database - Bilingual Approach fields")
-window.geometry("700x700")
+window.geometry("1200x700")
 window.config(padx=40, pady=50, bg=lightPink)
 
-frame = Frame(window, width=500, borderwidth=10)
+frame = Frame(window, width=800, borderwidth=10)
 frame.grid(row=11, column=0, columnspan=8, pady=(2, 0))
 
 '''Style Object'''

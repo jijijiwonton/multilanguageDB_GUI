@@ -4,13 +4,15 @@ Use multi;
 CREATE TABLE IF NOT EXISTS fruit_translation (
  id int(11) NOT NULL AUTO_INCREMENT,
   PRIMARY KEY (`id`)
-);--ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1;
+);
+-- ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1;
 
 CREATE TABLE IF NOT EXISTS  fruit_language (
   code char(2) NOT NULL,
   name varchar(20) NOT NULL,
   PRIMARY KEY (`code`)
-);--ENGINE=InnoDB DEFAULT CHARSET=latin1;
+);
+-- ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 CREATE TABLE IF NOT EXISTS fruit_translation_entry (
   id int(11) NOT NULL AUTO_INCREMENT,
@@ -22,7 +24,8 @@ CREATE TABLE IF NOT EXISTS fruit_translation_entry (
   PRIMARY KEY (`id`),
   FOREIGN KEY (`translation_id`) REFERENCES fruit_translation(`id`),
   FOREIGN KEY (`language_code`) REFERENCES  fruit_language(`code`)
-);--ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1
+);
+-- ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1
 
 CREATE TABLE IF NOT EXISTS fruit (
   id int(11) NOT NULL AUTO_INCREMENT,
@@ -35,7 +38,8 @@ CREATE TABLE IF NOT EXISTS fruit (
   FOREIGN KEY (`title`) REFERENCES  fruit_translation(`id`),
   FOREIGN KEY (`benefit`) REFERENCES fruit_translation(`id`),
   FOREIGN KEY (`season`) REFERENCES fruit_translation(`id`)
-);--ENGINE=InnoDB DEFAULT CHARSET=latin1;
+);
+-- ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- SELECT
 SELECT * FROM fruit_language;
