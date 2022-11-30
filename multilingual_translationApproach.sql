@@ -1,11 +1,28 @@
 Use multi;
 
--- CREATE TABLES
+drop table if exists fruit;
+drop table if exists fruit_translation_entry;
+drop table if exists fruit_language;
+drop table if exists fruit_translation;
+
 CREATE TABLE IF NOT EXISTS fruit_translation (
  id int(11) NOT NULL AUTO_INCREMENT,
   PRIMARY KEY (`id`)
 );
 -- ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1;
+
+delete from fruit_translation;
+
+INSERT INTO fruit_translation VALUES(1);
+INSERT INTO fruit_translation VALUES(2);
+INSERT INTO fruit_translation VALUES(3);
+INSERT INTO fruit_translation VALUES(4);
+INSERT INTO fruit_translation VALUES(5);
+INSERT INTO fruit_translation VALUES(6);
+INSERT INTO fruit_translation VALUES(7);
+INSERT INTO fruit_translation VALUES(8);
+INSERT INTO fruit_translation VALUES(9);
+INSERT INTO fruit_translation VALUES(10);
 
 CREATE TABLE IF NOT EXISTS  fruit_language (
   code char(2) NOT NULL,
@@ -13,6 +30,12 @@ CREATE TABLE IF NOT EXISTS  fruit_language (
   PRIMARY KEY (`code`)
 );
 -- ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+delete from fruit_language;
+
+INSERT INTO fruit_language VALUES ('en', 'English');
+INSERT INTO fruit_language VALUES ('ko', 'Korean');
+INSERT INTO fruit_language VALUES ('fr', 'French');
 
 CREATE TABLE IF NOT EXISTS fruit_translation_entry (
   id int(11) NOT NULL AUTO_INCREMENT,
@@ -27,44 +50,9 @@ CREATE TABLE IF NOT EXISTS fruit_translation_entry (
 );
 -- ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1
 
-CREATE TABLE IF NOT EXISTS fruit (
-  id int(11) NOT NULL AUTO_INCREMENT,
-  date_created datetime NOT NULL,
-  calories int(11) NOT NULL,
-  title int(11) NOT NULL DEFAULT '0',
-  benefit int(11) NOT NULL DEFAULT '0',
-  season int(11) NOT NULL DEFAULT '0',
-  PRIMARY KEY (`id`),
-  FOREIGN KEY (`title`) REFERENCES  fruit_translation(`id`),
-  FOREIGN KEY (`benefit`) REFERENCES fruit_translation(`id`),
-  FOREIGN KEY (`season`) REFERENCES fruit_translation(`id`)
-);
--- ENGINE=InnoDB DEFAULT CHARSET=latin1;
+delete from fruit_translation_entry;
 
--- SELECT
-SELECT * FROM fruit_language;
-SELECT * FROM fruit;
-SELECT * FROM fruit_translation;
-SELECT * FROM fruit_translation_entry;
 
--- Fruit Translation Inserts
-INSERT INTO fruit_translation VALUES(1);
-INSERT INTO fruit_translation VALUES(2);
-INSERT INTO fruit_translation VALUES(3);
-INSERT INTO fruit_translation VALUES(4);
-INSERT INTO fruit_translation VALUES(5);
-INSERT INTO fruit_translation VALUES(6);
-INSERT INTO fruit_translation VALUES(7);
-INSERT INTO fruit_translation VALUES(8);
-INSERT INTO fruit_translation VALUES(9);
-INSERT INTO fruit_translation VALUES(10);
-
--- Fruit Langauge Inserts
-INSERT INTO fruit_language VALUES ('en', 'English');
-INSERT INTO fruit_language VALUES ('ko', 'Korean');
-INSERT INTO fruit_language VALUES ('fr', 'French');
-
--- Fruit Translation Entry Inserts
 INSERT INTO fruit_translation_entry(`translation_id`, `language_code`, `fruit_name`,`fruit_benefit`,`fruit_season`)VALUES(1, 'en', 'banana','high potassium','summer');
 INSERT INTO fruit_translation_entry(`translation_id`, `language_code`, `fruit_name`,`fruit_benefit`,`fruit_season`)VALUES(1, 'ko', '바나나','많은 함량의 칼륨','여름');
 INSERT INTO fruit_translation_entry(`translation_id`, `language_code`, `fruit_name`,`fruit_benefit`,`fruit_season`)VALUES(1, 'fr', 'banane','plus de potassium','été');
@@ -105,7 +93,22 @@ INSERT INTO fruit_translation_entry(`translation_id`, `language_code`, `fruit_na
 INSERT INTO fruit_translation_entry(`translation_id`, `language_code`, `fruit_name`,`fruit_benefit`,`fruit_season`)VALUES(10, 'ko', '프랑크푸르트 소시지','단백질과 비타민 B12가 풍부','해당 없음');
 INSERT INTO fruit_translation_entry(`translation_id`, `language_code`, `fruit_name`,`fruit_benefit`,`fruit_season`)VALUES(10, 'fr', 'saucisse','Plein de protéines et de vitamine B12','n''est pas applicable');
 
--- Fruit Inserts
+CREATE TABLE IF NOT EXISTS fruit (
+  id int(11) NOT NULL AUTO_INCREMENT,
+  date_created datetime NOT NULL,
+  calories int(11) NOT NULL,
+  title int(11) NOT NULL DEFAULT '0',
+  benefit int(11) NOT NULL DEFAULT '0',
+  season int(11) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`id`),
+  FOREIGN KEY (`title`) REFERENCES  fruit_translation(`id`),
+  FOREIGN KEY (`benefit`) REFERENCES fruit_translation(`id`),
+  FOREIGN KEY (`season`) REFERENCES fruit_translation(`id`)
+);
+-- ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+delete from fruit;
+
 INSERT INTO fruit VALUES(1, now(), 105, 1, 1, 1);
 INSERT INTO fruit VALUES(2, now(), 155, 2, 2, 2);
 INSERT INTO fruit VALUES(3, now(), 100, 3, 3, 3);
@@ -116,6 +119,12 @@ INSERT INTO fruit VALUES(7, now(), 35, 7, 7, 7);
 INSERT INTO fruit VALUES(8, now(), 0, 8, 8, 8);
 INSERT INTO fruit VALUES(9, now(), 210, 9, 9, 9);
 INSERT INTO fruit VALUES(10, now(), 151, 10, 10, 10);
+
+-- SELECT NORMALLY
+SELECT * FROM fruit_language;
+SELECT * FROM fruit;
+SELECT * FROM fruit_translation;
+SELECT * FROM fruit_translation_entry;
 
 -- Test Inner Join Statement to display all transaltions of a certain item
 SELECT name as language_name, fruit_name, fruit_benefit, fruit_season, calories
@@ -138,14 +147,3 @@ SELECT fruit.id, fruit_name, fruit_benefit, fruit_season, calories
         INNER JOIN fruit_translation_entry ON title = translation_id
         INNER JOIN fruit_language ON language_code = code 
         WHERE fruit_language.code = 'ko';
-
-delete from fruit;
-delete from fruit_translation_entry;
-delete from fruit_language;
-delete from fruit_translation;
-
-
-drop table if exists fruit;
-drop table if exists fruit_translation_entry;
-drop table if exists fruit_language;
-drop table if exists fruit_translation;

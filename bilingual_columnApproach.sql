@@ -1,8 +1,7 @@
 USE multi;
 
--- How to create a table with bilingual language fields
+DROP TABLE IF EXISTS bilingualFields;
 
--- We have to add a field for different timezone
 CREATE TABLE IF NOT EXISTS bilingualFields (
   id int(10) NOT NULL AUTO_INCREMENT,
   name_en varchar(50) NOT NULL,
@@ -16,7 +15,9 @@ CREATE TABLE IF NOT EXISTS bilingualFields (
   create_ko datetime,
   PRIMARY KEY (`id`)
 );
--- Insert records with bilingual fields table
+
+DELETE FROM bilingualFields;
+
 INSERT INTO bilingualFields (name_en, name_ko, calories, benefit_en, benefit_ko, season_en, season_ko) VALUES('banana', '바나나', 105, 'high potassium', '많은 함량의 칼륨', 'summer', '여름');
 INSERT INTO bilingualFields (name_en, name_ko, calories, benefit_en, benefit_ko, season_en, season_ko) VALUES('whole milk', '전유', 155, 'A good source of potassium, B12, calcium and vitamin D', '칼륨, B12, 칼슘 및 비타민 D의 좋은 공급원', 'not applicable', '해당 없음');
 INSERT INTO bilingualFields (name_en, name_ko, calories, benefit_en, benefit_ko, season_en, season_ko) VALUES('apple', '사과', 100, 'Rich in fiber and antioxidants', '섬유질과 항산화 물질이 풍부한', 'fall', '가을');
@@ -28,14 +29,8 @@ INSERT INTO bilingualFields (name_en, name_ko, calories, benefit_en, benefit_ko,
 INSERT INTO bilingualFields (name_en, name_ko, calories, benefit_en, benefit_ko, season_en, season_ko) VALUES('beef', '쇠고기', 210, 'An excellent source of iron', '훌륭한 철분 공급원', 'not applicable', '해당 없음');
 INSERT INTO bilingualFields (name_en, name_ko, calories, benefit_en, benefit_ko, season_en, season_ko) VALUES('frankfurter', '프랑크푸르트 소시지', 151, 'Full of proteins and vitamin B12', '단백질과 비타민 B12가 풍부', 'not applicable', '해당 없음');
 
+DROP TABLE IF EXISTS multiLanguagesFields;
 
-DELETE FROM bilingualFields;
-
-SELECT * FROM bilingualFields;
-
-DROP TABLE IF EXISTS bilingualFields;
-
--- How to create a table with multi-languages fields
 CREATE TABLE IF NOT EXISTS multiLanguagesFields (
   id int(10) NOT NULL AUTO_INCREMENT,
   title_en varchar(255) NOT NULL,
@@ -51,7 +46,8 @@ CREATE TABLE IF NOT EXISTS multiLanguagesFields (
   PRIMARY KEY (`id`)
 );
 
--- Insert records with multilangue fields table
+DELETE FROM multiLanguagesFields;
+
 INSERT INTO multiLanguagesFields(`title_en`, `title_ko`, `title_ch`, `title_fr`, `title_sp`,  `benefit_en`, `benefit_ko`, `benefit_ch`, `benefit_fr`, `benefit_sp`) 
 VALUES ('banana', '바나나', '香蕉', 'banane', 'plátano', 'A great source of potassium', '칼륨의 훌륭한 공급원', '钾的重要来源', 'Une excellente source de potassium', 'Una gran fuente de potasio');
 INSERT INTO multiLanguagesFields(`title_en`, `title_ko`, `title_ch`, `title_fr`, `title_sp`,  `benefit_en`, `benefit_ko`, `benefit_ch`, `benefit_fr`, `benefit_sp`) 
@@ -73,11 +69,5 @@ VALUES ('beef', '쇠고기', '牛肉', 'bœuf', 'carne de res', 'An excellent so
 INSERT INTO multiLanguagesFields(`title_en`, `title_ko`, `title_ch`, `title_fr`, `title_sp`,  `benefit_en`, `benefit_ko`, `benefit_ch`, `benefit_fr`, `benefit_sp`) 
 VALUES ('frankfurter', '프랑크푸르트 소시지', '法兰克福香肠', 'saucisse', 'salchicha', 'Full of proteins and vitamin B12', '단백질과 비타민 B12가 풍부', '富含蛋白质和维生素 B12', 'Plein de protéines et de vitamine B12', 'Llena de proteínas y vitamina B12');
 
-
-
-DELETE FROM multiLanguagesFields;
-
--- How to retreive data from a bilingual fields table
+SELECT * FROM bilingualFields;
 SELECT * FROM multiLanguagesFields;
-
-DROP TABLE IF EXISTS multiLanguagesFields;
