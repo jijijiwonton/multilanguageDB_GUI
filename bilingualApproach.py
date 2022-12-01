@@ -50,11 +50,7 @@ cursor = con.cursor()
 '''Create a table for bilingual fields approach'''
 def createTable():
     bilingual = "CREATE TABLE IF NOT EXISTS bilingualFields (id int(10) NOT NULL AUTO_INCREMENT, name_en varchar(50) NOT NULL, name_ko varchar(50) NOT NULL, calories int NOT NULL, benefit_en varchar(255) NOT NULL, benefit_ko varchar(255) NOT NULL, season_en varchar(10) NOT NULL, season_ko varchar(10) NOT NULL, PRIMARY KEY (`id`));"
-    # TODO: The table creation should be in the same GUI or create another GUI?
-    # multilingual = "CREATE TABLE IF NOT EXISTS multiLanguagesFields (id int(10) NOT NULL AUTO_INCREMENT, title_en varchar(255) NOT NULL, title_ko varchar(255) NOT NULL, title_ch varchar(255) NOT NULL, title_fr varchar(255) NOT NULL, title_sp varchar(255) NOT NULL, benefit_en varchar(255) NOT NULL, benefit_ko varchar(255) NOT NULL, benefit_ch varchar(255) NOT NULL, benefit_fr varchar(255) NOT NULL, benefit_sp varchar(255) NOT NULL, PRIMARY KEY (`id`));"
     cursor.execute(bilingual)
-    # TODO: ...
-    # cursor.execute(multilingual)
     messagebox.showinfo(title="CREATE Operation 💗", message="A few bilingual fields table is created 💗")
     
 '''Display data in English'''

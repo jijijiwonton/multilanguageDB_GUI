@@ -13,7 +13,7 @@ vintagePink = "#c38a9e"
 window = Tk()
 
 '''TkInter Configuration'''
-window.title("Multilanguage Database - Bilingual Approach fields")
+window.title("Multilanguage Database - Translation Approach fields")
 window.geometry("1300x700")
 window.config(padx=40, pady=50, bg=lightPink)
 
