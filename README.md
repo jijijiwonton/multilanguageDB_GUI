@@ -8,7 +8,7 @@ A python application to efficiently approach both bilingual database & multiling
 GUI is implemented with TKINTER.</br>
 
 ## Folder Structure
-|multilanguageDB_GUI
+|multilanguageDB_GUI</br>
 |-bilingual_columnApproach.sql</br>
 |-bilingualApproach.py</br>
 |-multilingual_translationApproach.sql</br>
