@@ -9,10 +9,10 @@ GUI is implemented with TKINTER.</br>
 
 ## Folder Structure
 |multilanguageDB_GUI</br>
-&nbsp;|-bilingual_columnApproach.sql</br>
-&nbsp;|-bilingualApproach.py</br>
-&nbsp;|-multilingual_translationApproach.sql</br>
-&nbsp;|-multilingualApproach.py</br>
+&emsp;|-bilingual_columnApproach.sql</br>
+&emsp;|-bilingualApproach.py</br>
+&emsp;|-multilingual_translationApproach.sql</br>
+&emsp;|-multilingualApproach.py</br>
 
 * bilingual_columnApproach.sql script has a SQL query. 
 * bilingualApproach.py has a source code for GUI.
